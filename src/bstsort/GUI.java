@@ -1,7 +1,8 @@
 package bstsort;
 
 import java.awt.Component;
-import static java.awt.EventQueue.invokeLater;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -243,6 +244,8 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
             )
         );
+        
+        submitButton.addActionListener(this::submitButtonActionPerformed);
         pack();
     }
     
@@ -268,11 +271,21 @@ public class GUI extends javax.swing.JFrame {
     
     
     /**
+     * Event listener for submit button
+     * @param ev 
+     */
+    private void submitButtonActionPerformed(ActionEvent ev) {
+        System.out.println("action performed");
+    }
+    
+    
+    
+    /**
      * Main
      * @param args 
      */
     public static void main(String[] args) {
-        invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new GUI().setVisible(true);
