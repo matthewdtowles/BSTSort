@@ -1,7 +1,6 @@
 package bstsort;
 
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -246,6 +245,7 @@ public class GUI extends javax.swing.JFrame {
         );
         
         submitButton.addActionListener(this::submitButtonActionPerformed);
+        setVisible(true);
         pack();
     }
     
@@ -275,9 +275,29 @@ public class GUI extends javax.swing.JFrame {
      * @param ev 
      */
     private void submitButtonActionPerformed(ActionEvent ev) {
-        System.out.println("action performed");
+        
+        // save user input to values
+        String[] values = unsortedField.getText().split(" ");
+        
+        // create empty BST
+        // check radio buttons
+        if (integerButton.isSelected()) {
+            BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+            
+            // loop through values and add to bst
+            for (String val : values) {
+                // bst .add/.insert Integer.parseInt(val)
+            }
+        } else {
+            BinarySearchTree<Fraction> bst = new BinarySearchTree<>();
+            
+            // loop thru vals and add to bst
+            for (String val : values) {
+                // Fraction f = new Fraction(val);
+                // bst add/insert f
+            }
+        }
     }
-    
     
     
     /**
@@ -285,11 +305,6 @@ public class GUI extends javax.swing.JFrame {
      * @param args 
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
+        new GUI();
     }
 }
