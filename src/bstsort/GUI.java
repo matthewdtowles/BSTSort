@@ -289,7 +289,7 @@ public class GUI extends javax.swing.JFrame {
                 // bst .add/.insert Integer.parseInt(val)
             }
         } else {
-            BinarySearchTree<Fraction> bst = new BinarySearchTree<>();
+            //BinarySearchTree<Fraction> bst = new BinarySearchTree<>();
             
             // loop thru vals and add to bst
             for (String val : values) {
@@ -305,6 +305,31 @@ public class GUI extends javax.swing.JFrame {
      * @param args 
      */
     public static void main(String[] args) {
-        new GUI();
+        
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        
+        bst.add(15);
+        bst.add(10);
+        bst.add(20);
+        bst.add(8);
+        bst.add(16);
+        bst.add(24);
+        bst.add(17);
+        
+//        System.out.println(bst.getRoot().getValue());
+//        System.out.println(bst.getRoot().getLeft().getValue() + " - " + bst.getRoot().getRight().getValue());
+//        System.out.println(bst.getRoot().getLeft().getLeft().getValue()
+//                + " - - " +
+//                bst.getRoot().getRight().getLeft().getValue()
+//                + " - - " + bst.getRoot().getRight().getRight().getValue()
+//        );
+//        System.out.println(" - - - " + bst.getRoot().getRight().getLeft().getRight().getValue());
+//        
+//        System.out.println("----------------------------------------------");
+        
+//        bst.inorderTraversal(bst.getRoot());
+        bst.postorderTraversal(bst.getRoot());
+        System.out.println(bst.getSortedValues());
+        //new GUI();
     }
 }

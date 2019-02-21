@@ -15,30 +15,116 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private Node<T> root;
     
     
+    /**
+     * Sorted values of BST nodes
+     */
+    private String sortedValues;
+    
+    
+    /**
+     * Constructor
+     * Simply sets root to null
+     */
     public BinarySearchTree() {
-        this.root = null;
+        root = null;
+        sortedValues = "";
     }
     
+    
+    /**
+     * Adds a node to the BST
+     * Calls the recursive add if root is not null
+     * If root is null then a new node is made
+     * and assigned as root of BST
+     * 
+     * @param value - used to create new node for BST
+     */
     public void add(T value) {
-        add (value, root);
+        if (root == null) {
+            root = new Node(value);
+        } else {
+            add (value, root);
+        }
     }
     
-    // recursive add method called when adding any node to BST
+    
+    /**
+     * Recursively adds a new node to BST
+     * 
+     * 3 possible outcomes:
+     * 1. Node passed is null
+     *   This is the base case
+     *   This means that passed node has a vacant
+     *   spot, so we create a new node and return
+     *   it which bubbles up to previous add() call
+     *   which will set that passed node's right/left
+     *   child to the return value
+     * 2. Value is less or equal to Node's value
+     *   The eventual node will be on the left subtree
+     *   relative to the node it was compared to
+     *   This is a recursive step
+     * 3. Value is greater than Node's value
+     *   The eventual node will be on the right subtree
+     *   relative to the node it was compared to
+     *   This is a recursive step
+     * 
+     * @param value - future new node
+     * @param node - node to compare value to
+     * @return new node made from value passed
+     */
     private Node<T> add(T value, Node<T> node) {
+        // base case - create new node with value
         if (node == null) {
-            return new Node(value);
+            node = new Node(value);
+        } else if (value.compareTo(node.getValue()) <= 0) {
+            // go to left subtree
+            node.setLeft(add(value, node.getLeft()));
+        } else {
+            // go to right subtree
+            node.setRight(add(value, node.getRight()));
         }
-        if (value.compareTo(node.getValue()) <= 0) {
-            return add(value, node.getLeft());
+        return node;
+    }
+    
+    
+    /**
+     * 
+     * @param node
+     * @return 
+     */
+    public void inorderTraversal(Node<T> node) {
+        // base case
+        if (node == null) {
+            return;
         }
-        /*
-        0. base case must be:  if node == null return new Node(value)
-        1. need to find where to add our value
-        2. compare value to node's value (root on first call)
-        3. if value <= node.value :: add(value, node.left) << recursive
-        4. else if value > node.value :: add(value, node.right)
         
-        */
-        return add(value, node.getRight());
+        inorderTraversal(node.getLeft());
+        sortedValues += node.getValue() + " ";
+        inorderTraversal(node.getRight());
+    }
+    
+    
+    public void postorderTraversal(Node<T> node) {
+        // base case
+        if (node == null) {
+            return;
+        }
+        
+        postorderTraversal(node.getRight());
+        sortedValues += node.getValue() + " ";
+        postorderTraversal(node.getLeft());
+    }
+    
+    /**
+     *
+     * @return root
+     */
+    Node<T> getRoot() {
+        return root;
+    }
+    
+    
+    String getSortedValues() {
+        return sortedValues;
     }
 }
