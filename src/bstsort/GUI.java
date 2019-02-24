@@ -7,6 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -279,23 +280,38 @@ public class GUI extends javax.swing.JFrame {
         // save user input to values
         String[] values = unsortedField.getText().split(" ");
         
-        // create empty BST
-        // check radio buttons
-        if (integerButton.isSelected()) {
-            BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-            
-            // loop through values and add to bst
-            for (String val : values) {
-                // bst .add/.insert Integer.parseInt(val)
+        // true for desc and false for asc  
+        boolean reverse = descendingButton.isSelected();
+        
+        try {
+            if (integerButton.isSelected()) {
+                BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+
+                // loop through values and add to bst
+                for (String val : values) {
+                    bst.add(Integer.parseInt(val));
+                }
+                bst.sort(reverse);
+                sortedField.setText(bst.getSortedValues());
+            } else {
+                BinarySearchTree<Fraction> bst = new BinarySearchTree<>();
+
+                // loop thru vals and add to bst
+                for (String val : values) {
+                    bst.add(new Fraction(val));
+                }
+                bst.sort(reverse);
+                sortedField.setText(bst.getSortedValues());
             }
-        } else {
-            //BinarySearchTree<Fraction> bst = new BinarySearchTree<>();
-            
-            // loop thru vals and add to bst
-            for (String val : values) {
-                // Fraction f = new Fraction(val);
-                // bst add/insert f
-            }
+        } catch (NumberFormatExpression 
+                        | NumberFormatException 
+                        | ArithmeticException ex) {
+            JOptionPane.showMessageDialog(
+                null,
+                ex.getMessage(),
+                ex.toString(),
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
     
@@ -305,31 +321,6 @@ public class GUI extends javax.swing.JFrame {
      * @param args 
      */
     public static void main(String[] args) {
-        
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-        
-        bst.add(15);
-        bst.add(10);
-        bst.add(20);
-        bst.add(8);
-        bst.add(16);
-        bst.add(24);
-        bst.add(17);
-        
-//        System.out.println(bst.getRoot().getValue());
-//        System.out.println(bst.getRoot().getLeft().getValue() + " - " + bst.getRoot().getRight().getValue());
-//        System.out.println(bst.getRoot().getLeft().getLeft().getValue()
-//                + " - - " +
-//                bst.getRoot().getRight().getLeft().getValue()
-//                + " - - " + bst.getRoot().getRight().getRight().getValue()
-//        );
-//        System.out.println(" - - - " + bst.getRoot().getRight().getLeft().getRight().getValue());
-//        
-//        System.out.println("----------------------------------------------");
-        
-//        bst.inorderTraversal(bst.getRoot());
-        bst.postorderTraversal(bst.getRoot());
-        System.out.println(bst.getSortedValues());
-        //new GUI();
+        new GUI();
     }
 }

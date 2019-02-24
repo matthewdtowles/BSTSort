@@ -2,7 +2,9 @@ package bstsort;
 
 /**
  * NumberFormatExpression
- *
+ * 
+ * Thrown for invalid fraction formats
+ * 
  * @author matthew.towles
  * @date Feb 15, 2019
  */

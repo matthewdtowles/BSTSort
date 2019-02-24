@@ -9,7 +9,7 @@ package bstsort;
  * @param <T>
  * @date Feb 17, 2019
  */
-class Node<T extends Comparable<T>> {
+public class Node<T extends Comparable<T>> {
     
     /**
      * Actual data held by node
@@ -40,27 +40,23 @@ class Node<T extends Comparable<T>> {
     
     // getters & setters:
     
-    protected T getValue() {
+    public T getValue() {
         return value;
     }
     
-    protected void setValue(T value) {
-        this.value = value;
-    }
-    
-    protected Node<T> getLeft() {
+    public Node<T> getLeft() {
         return left;
     }
     
-    protected void setLeft(Node<T> left) {
+    void setLeft(Node<T> left) {
         this.left = left;
     }
             
-    protected Node<T> getRight() {
+    public Node<T> getRight() {
         return right;
     }
     
-    protected void setRight(Node<T> right) {
+    void setRight(Node<T> right) {
         this.right = right;
     }
 }

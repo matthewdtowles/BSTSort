@@ -8,7 +8,7 @@ package bstsort;
  * @date Feb 17, 2019
  */
 public class BinarySearchTree<T extends Comparable<T>> {
-    
+
     /**
      * Root node of this BST
      */
@@ -88,11 +88,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
     
     
     /**
-     * 
-     * @param node
-     * @return 
+     * Sort nodes in asc or desc order
+     * @param reverse - true to sort in desc
      */
-    public void inorderTraversal(Node<T> node) {
+    public void sort(boolean reverse) {
+        if (reverse) {
+            postorderTraversal(getRoot());
+        } else {
+            inorderTraversal(getRoot());
+        }
+    }
+    
+    
+    /**
+     * Sort nodes in asc order
+     * @param node 
+     */
+    private void inorderTraversal(Node<T> node) {
         // base case
         if (node == null) {
             return;
@@ -104,7 +116,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
     
     
-    public void postorderTraversal(Node<T> node) {
+    /**
+     * Sort nodes in desc order
+     * @param node 
+     */
+    private void postorderTraversal(Node<T> node) {
         // base case
         if (node == null) {
             return;
@@ -115,16 +131,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
         postorderTraversal(node.getLeft());
     }
     
+    
     /**
-     *
      * @return root
      */
-    Node<T> getRoot() {
+    public Node<T> getRoot() {
         return root;
     }
     
-    
-    String getSortedValues() {
+    /**
+     * @return sortedValues
+     */
+    public String getSortedValues() {
         return sortedValues;
     }
 }
