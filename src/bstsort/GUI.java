@@ -20,6 +20,7 @@ import javax.swing.WindowConstants;
  * 
  * @author matthew.towles
  * @date Feb 15, 2019
+ * @version 1.2
  */
 public class GUI extends javax.swing.JFrame {
     
